@@ -1,5 +1,7 @@
 package loja;
 
+import java.io.IOException;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 import loja.model.Disco;
 import loja.controller.LojaController;
@@ -25,8 +27,19 @@ public class Menu {
             System.out.println("           5- Sair                                   ");
             System.out.println("*****************************************************");
             System.out.println("             Entre com a opção desejada:             ");
+            
+            
+            try {
+            	
+				opcao = leia.nextInt();
+            }catch(InputMismatchException e){
+				System.out.println("\nDigite valores inteiros!");
+				opcao=0;
+			}
+				/*leia.nextLine();
+				opcao=0;
             opcao = leia.nextInt();
-            leia.nextLine(); 
+            leia.nextLine(); */
 
             
             if (opcao == 5) {
@@ -39,15 +52,18 @@ public class Menu {
                 case 1:
                     System.out.println("Digite o nome do Artista:");
                     nome = leia.nextLine();
+                    leia.nextLine();
                     System.out.println("Digite o nome do Disco:");
                     titulo = leia.nextLine();
                     lojaController.adicionarDisco(nome, titulo);
+                    keyPress();
                     break;
 
                     
                     
                 case 2:
                     lojaController.listarDiscos();
+                    keyPress();
                     break;
 
                 case 3:
@@ -59,19 +75,40 @@ public class Menu {
                     System.out.println("Digite o novo nome do Disco:");
                     titulo = leia.nextLine();
                     lojaController.atualizarDisco(numero, nome, titulo);
+                    keyPress();
                     break;
 
                 case 4:
                     System.out.println("Digite o número do disco para remover:");
                     numero = leia.nextInt();
                     lojaController.removerDisco(numero);
+                    keyPress();
                     break;
 
                 default:
                     System.out.println("Opção inválida!");
+                    keyPress();
                     break;
+                    
+                    
             }
+       leia.nextLine();    
+           
         }
+        
+    }
+    public static void keyPress() {
+
+		try {
+
+			System.out.println( "\n\nPressione Enter para Continuar...");
+			System.in.read();
+			
+		} catch (IOException e) {
+
+			System.out.println("Você pressionou uma tecla diferente de enter!");
+
+		}
     }
     }
 
