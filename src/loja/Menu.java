@@ -1,6 +1,7 @@
 package loja;
 
 import java.util.Scanner;
+import loja.model.Disco;
 import loja.controller.LojaController;
 
 
@@ -24,10 +25,10 @@ public class Menu {
             System.out.println("           5- Sair                                   ");
             System.out.println("*****************************************************");
             System.out.println("             Entre com a opção desejada:             ");
-
             opcao = leia.nextInt();
             leia.nextLine(); 
 
+            
             if (opcao == 5) {
                 System.out.println("Saindo");
                 leia.close();
@@ -43,6 +44,8 @@ public class Menu {
                     lojaController.adicionarDisco(nome, titulo);
                     break;
 
+                    
+                    
                 case 2:
                     lojaController.listarDiscos();
                     break;
@@ -70,4 +73,5 @@ public class Menu {
             }
         }
     }
-}
+    }
+
